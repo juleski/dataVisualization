@@ -1,0 +1,9 @@
+# Flask Framework
+Flask==0.12
+
+# Flask packages
+Flask-Cors==3.0.2
+
+# Elasticsearch 5.x
+elasticsearch>=5.0.0,<6.0.0
+elasticsearch-dsl>=5.0.0,<6.0.0

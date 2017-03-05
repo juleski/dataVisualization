@@ -14,8 +14,7 @@ app = Flask(__name__)
 def get_data():
     queryfilter = {
         'size': getParam('size'),
-        'openPorts': getListParam('openPorts'),
-        'closedPorts': getListParam('closedPorts')
+        'openPorts': getListParam('openPorts')
     }
     
     middleware = DataMiddleware()

@@ -21,5 +21,7 @@ class ESDao():
 		else:
 			s._extra['size'] = 50
 
+		s = s.sort('datetime')
+
 		return s.execute()
 

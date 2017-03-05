@@ -1,4 +1,4 @@
-from utils.resources import Data
+from Data import *
 from elasticsearch_dsl.connections import connections
 from elasticsearch_dsl import Index
 import os, json
@@ -31,11 +31,6 @@ if not Index('horangi').exists():
 
                 data.save()
                 i += 1
-    print i
+    print 'Indexed %d files!' % (i)
 else:
     print 'DATA ALREADY IN ES'
-
-try:
-    res = Data.get(id='AVqZgZwuRETTcytxWd56')
-except Exception as e:
-    print e.info['found'], e.status_code

@@ -1,18 +1,15 @@
 #!flask/bin/python
-from flask import Flask, jsonify, make_response, request
-from elasticsearch_dsl import DocType, Object, Nested, Date, Q, Search
-from elasticsearch_dsl.connections import connections
-from elasticsearch import Elasticsearch
-from utils.resources import Data, getParam, getListParam
+from flask import Flask, jsonify, make_response, request, send_file
+
+from utils import *
+from flask_cors import cross_origin
 
 from middleware.middlewareData import MiddlewareData
 
-connections.create_connection(hosts=['localhost:9200'])
-
 app = Flask(__name__)
 
-
 @app.route('/horangi/api/v1.0/data', methods=['GET'])
+@cross_origin(origin='http://localhost:port')
 def get_data():
     queryfilter = {
         'size': getParam('size'),
@@ -24,7 +21,7 @@ def get_data():
     data = middleware.get_data(queryfilter)
             
     return jsonify({
-        'result': data,
+        'data': data,
         'status': 'success'
         })
 

@@ -35,5 +35,7 @@ if not Index('horangi').exists():
 else:
     print 'DATA ALREADY IN ES'
 
-res = Data.get(id='AVqZgZwuRETTcytxWd56')
-print res.to_dict()
+try:
+    res = Data.get(id='AVqZgZwuRETTcytxWd56')
+except Exception as e:
+    print e.info['found'], e.status_code

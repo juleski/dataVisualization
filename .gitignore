@@ -3,3 +3,6 @@ elasticsearch-5.2.2/*
 .DS_Store
 nmap_raw.tar.gz
 elasticsearch-5.2.2.tar.gz
+api/*.pyc
+*.pyc
+utils/*.pyc

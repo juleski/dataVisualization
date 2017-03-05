@@ -1,4 +1,4 @@
-from api.app import *
+from app import *
 
 if __name__ == '__main__':
 	app.run(debug=True, host='0.0.0.0')

@@ -1,10 +1,11 @@
 #!flask/bin/python
 from flask import Flask, jsonify, make_response, request, send_file
-
-from utils import *
 from flask_cors import cross_origin
+from utils import *
+from dataMiddleware import *
 
-from middleware.middlewareData import MiddlewareData
+
+
 
 app = Flask(__name__)
 
@@ -17,7 +18,7 @@ def get_data():
         'closedPorts': getListParam('closedPorts')
     }
     
-    middleware = MiddlewareData()
+    middleware = DataMiddleware()
     data = middleware.get_data(queryfilter)
             
     return jsonify({

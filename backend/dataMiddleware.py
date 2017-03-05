@@ -1,9 +1,9 @@
-from ..dao.ESDao import ESDao
+from dataEsDao import *
 
-class MiddlewareData():
+class DataMiddleware():
 
     def get_data(self, queryFilter):
-        esClass = ESDao()
+        esClass = DataEsDao()
         results = esClass.search(queryFilter)
         results = results.to_dict()
         data = []

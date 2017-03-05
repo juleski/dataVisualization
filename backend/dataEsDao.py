@@ -2,7 +2,7 @@ from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search, Q
 
 
-class ESDao():
+class DataEsDao():
 
 	def search(self, queryFilter):
 		client = Elasticsearch()

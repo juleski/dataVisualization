@@ -1,10 +1,11 @@
-from dataEsDao import *
 
-class DataMiddleware():
+class DataMidlayer():
+
+    def __init__(self, DataEsDao):
+        self.esDao = DataEsDao()
 
     def get_data(self, queryFilter):
-        esClass = DataEsDao()
-        results = esClass.search(queryFilter)
+        results = self.esDao.search(queryFilter)
         results = results.to_dict()
         data = []
 

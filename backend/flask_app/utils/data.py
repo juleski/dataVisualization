@@ -1,4 +1,5 @@
 from elasticsearch_dsl import DocType, Nested, Date
+from constants import *
 
 class Data(DocType):
     status = Nested()
@@ -9,4 +10,4 @@ class Data(DocType):
     hostnames = Nested()
 
     class Meta:
-        index = 'horangi'
+        index = INDEX

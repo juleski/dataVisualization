@@ -1,12 +1,14 @@
 from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search, Q
+from ..utils.constants import *
+import os
 
 
 class DataEsDao():
 
 	def search(self, queryFilter):
-		client = Elasticsearch()
-		s = Search(using=client, index='horangi')
+		client = Elasticsearch([ES_HOST])
+		s = Search(using=client, index=INDEX)
 		queryList = []
 
 		if (queryFilter['openPorts']):

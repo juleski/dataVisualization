@@ -1,15 +1,14 @@
 #!flask/bin/python
 from flask import Flask, jsonify, make_response, request, send_file
 from flask_cors import cross_origin
-from utils import *
-from dataMiddleware import *
-
-
-
+from utils.helpers import *
+from utils.constants import *
+from dao.dataEsDao import *
+from midlayer.dataMidlayer import *
 
 app = Flask(__name__)
 
-@app.route('/horangi/api/v1.0/data', methods=['GET'])
+@app.route('/exam/api/v1.0/data', methods=['GET'])
 @cross_origin(origin='http://localhost:port')
 def get_data():
     queryfilter = {
@@ -17,8 +16,8 @@ def get_data():
         'openPorts': getListParam('openPorts')
     }
     
-    middleware = DataMiddleware()
-    data = middleware.get_data(queryfilter)
+    midlayer = DataMidlayer(DataEsDao)
+    data = midlayer.get_data(queryfilter)
             
     return jsonify({
         'data': data,

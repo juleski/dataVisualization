@@ -1,0 +1,16 @@
+version: '2'
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.2.2
+    ports:
+      - "9200:9200"
+    container_name: es-container
+  server:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    container_name: flask-container
+    links:
+      - elasticsearch
+    environment:
+      - ES_CONFIG=elasticsearch

@@ -14,5 +14,12 @@ services:
       - elasticsearch
     depends_on:
       - elasticsearch
-    environment:
-      - ES_CONFIG=elasticsearch
+  frontend:
+    build: ./frontend
+    ports:
+      - "4200:4200"
+    container_name: angular2-container
+    links:
+      - server
+    depends_on:
+      - server

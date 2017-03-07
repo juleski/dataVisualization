@@ -10,7 +10,7 @@ WORKDIR /server
 
 EXPOSE 5000
 
-RUN python manage.py init_data
+ENV ES_CONFIG=localhost
 
 CMD ["python", "manage.py", "run_server"]
 

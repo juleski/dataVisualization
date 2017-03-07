@@ -1,14 +1,13 @@
-#!flask/bin/python
-from flask import Flask, jsonify, make_response, request, send_file
+from flask import Flask, Blueprint, jsonify, make_response, request, send_file
 from flask_cors import cross_origin
 from utils.helpers import *
 from utils.constants import *
 from dao.dataEsDao import *
 from midlayer.dataMidlayer import *
 
-app = Flask(__name__)
+appBlueprint = Blueprint('exam_api', __name__)
 
-@app.route('/exam/api/v1.0/data', methods=['GET'])
+@appBlueprint.route('/data', methods=['GET'])
 @cross_origin(origin='http://localhost:port')
 def get_data():
     queryfilter = {
@@ -24,7 +23,7 @@ def get_data():
         'status': 'success'
         })
 
-@app.route('/exam/api/v1.0/port', methods=['GET'])
+@appBlueprint.route('/port', methods=['GET'])
 @cross_origin(origin='http://localhost:port')
 def get_ports():
 
@@ -36,7 +35,7 @@ def get_ports():
         'status': 'success'
         })
 
-@app.errorhandler(404)
+@appBlueprint.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({
         'error': 'Not found',

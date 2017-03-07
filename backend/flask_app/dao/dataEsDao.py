@@ -6,7 +6,7 @@ import os
 
 class DataEsDao():
 
-	def search(self, queryFilter):
+	def get_data(self, queryFilter):
 		client = Elasticsearch([ES_HOST])
 		s = Search(using=client, index=INDEX)
 		queryList = []

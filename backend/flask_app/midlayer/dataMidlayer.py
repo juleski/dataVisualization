@@ -12,3 +12,11 @@ class DataMidlayer():
         for result in results['hits']['hits']:
             data.append(result['_source'])
         return data
+
+    def get_ports(self):
+        results = self.esDao.get_ports()
+        results = results.to_dict()
+        data = []
+        for result in results['hits']['hits']:
+            data.append(result['_source'])
+        return data

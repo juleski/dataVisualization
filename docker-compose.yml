@@ -12,5 +12,7 @@ services:
     container_name: flask-container
     links:
       - elasticsearch
+    depends_on:
+      - elasticsearch
     environment:
       - ES_CONFIG=elasticsearch

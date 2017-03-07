@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <div class="card">
+              <div class="card-block">
+                <h4 class="card-title">Frequency Chart</h4>
+                <label for="port">Port</label>
+                <select id="port" name="port"
+                [(ngModel)]="selectedPort" (ngModelChange)="setChartData(selectedPort, true)">
+                  <option [ngValue]=port *ngFor="let port of availablePorts">{{port}}</option>
+                </select>
+              </div>
+            </div>
+        </div>
+        <div class="col-8" style="display: block">
+            <canvas baseChart
+                    [datasets]="barChartData"
+                    [labels]="barChartLabels"
+                    [options]="barChartOptions"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+        </div>
+    </div>
+</div>

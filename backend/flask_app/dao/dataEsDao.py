@@ -27,3 +27,10 @@ class DataEsDao():
 
 		return s.execute()
 
+	def get_ports(self):
+		client = Elasticsearch([ES_HOST])
+		s = Search(using=client, index=INDEX)
+		s= s.query("type", value='port')
+		s._extra['size'] = 50
+		return s.execute()
+

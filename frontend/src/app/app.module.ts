@@ -8,11 +8,13 @@ import { AppComponent } from './app.component';
 
 import { ChartsModule } from 'ng2-charts';
 import { ESDataService } from './esdata.service';
+import { FrquencyChartComponent } from './frquency-chart/frquency-chart.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FrquencyChartComponent
   ],
   imports: [
     BrowserModule,

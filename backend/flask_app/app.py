@@ -24,6 +24,18 @@ def get_data():
         'status': 'success'
         })
 
+@app.route('/exam/api/v1.0/port', methods=['GET'])
+@cross_origin(origin='http://localhost:port')
+def get_ports():
+
+    midlayer = DataMidlayer(DataEsDao)
+    data = midlayer.get_ports()
+
+    return jsonify({
+        'data': data,
+        'status': 'success'
+        })
+
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({

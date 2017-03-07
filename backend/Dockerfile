@@ -1,6 +1,6 @@
 FROM p0bailey/docker-flask
 
-COPY requirements.txt server.py /server/
+COPY requirements.txt manage.py /server/
 
 RUN pip install -r /server/requirements.txt
 
@@ -10,5 +10,7 @@ WORKDIR /server
 
 EXPOSE 5000
 
-CMD ["python", "manage.py", "init_data_and_run_server"]
+RUN python manage.py init_data
+
+CMD ["python", "manage.py", "run_server"]
 

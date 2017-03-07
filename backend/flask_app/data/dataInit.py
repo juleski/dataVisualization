@@ -2,7 +2,9 @@ from ..utils.data import *
 from ..utils.constants import *
 from elasticsearch_dsl.connections import connections
 from elasticsearch_dsl import Index
+from datetime import datetime
 import os, json, sys
+
 
 
 def populate_es_data():
@@ -10,7 +12,9 @@ def populate_es_data():
     connections.create_connection(hosts=[ES_HOST])
     if not Index(INDEX).exists():
         Data.init()
+        Port.init()
         i = 0
+        ports = []
         dirToRead = os.getcwd() + '/flask_app/data/nmap_raw/'
         for filename in os.listdir(dirToRead):
             with open(dirToRead + filename, 'r') as f:
@@ -26,6 +30,8 @@ def populate_es_data():
                         data.addresses=info['addresses']
                     if 'tcp' in keys:
                         data.tcp=info['tcp']
+                        for port in info['tcp']:
+                            ports.append(port)
                     if 'datetime' in keys:
                         data.datetime=info['datetime']
                     if 'hostnames' in keys:
@@ -34,5 +40,15 @@ def populate_es_data():
                     data.save()
                     i += 1
         print 'Indexed %d files!' % (i)
+        i = 0
+        ports = list(set(ports))
+        for port in ports:
+            i += 1
+            portType = Port()
+            portType.name = port
+            portType.date = datetime.now()
+            portType.save()
+        print 'Indexed %d ports!' % (i)
+
     else:
         print 'DATA ALREADY IN ES'

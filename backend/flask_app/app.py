@@ -8,7 +8,7 @@ from midlayer.dataMidlayer import *
 appBlueprint = Blueprint('exam_api', __name__)
 
 @appBlueprint.route('/data', methods=['GET'])
-@cross_origin(origin='http://localhost:port')
+@cross_origin(origin=['http://localhost:port', 'http://server:port'])
 def get_data():
     queryfilter = {
         'size': getParam('size'),
